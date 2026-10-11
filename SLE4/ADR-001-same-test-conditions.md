@@ -1,47 +1,75 @@
-SLE-4: Architecture Decision Record (ADR)
-
-BFS vs DFS Graph Search System
-
+ADR-001: Use the Same Test Conditions for BFS and DFS Profiling
 Student Information
 
 - Name: Aditi Annaso Dudhal
 - PRN: 25UAM134
 - Division: B
 - Course: 02AML204 – Introduction to Artificial Intelligence
-- Assignment: SLE-4 – Architecture Decision Record
 
-Project Overview
+1. Context
 
-This project documents an important design decision for the BFS vs DFS Graph Search System. The decision is based on the implementation, profiling, and architecture work completed in the previous SLE assignments.
+The BFS vs DFS Graph Search System implements two graph-search algorithms: Breadth-First Search (BFS) and Depth-First Search (DFS). Both algorithms need to be evaluated under consistent conditions to make their performance comparison meaningful.
 
-SLE Journey
+In SLE-2, the profiling setup uses the same graph, starting node A, and goal nodes B, I, and K. The profiling scripts are designed to run 10 timing measurements and summarize the best, average, and worst execution times.
 
-SLE-1: AI-Augmented Workflow
+SLE-3 represents the system using context, container, and component diagrams. This ADR documents the decision connecting the implementation and profiling work with the system architecture.
 
-Implemented a basic AI agent and maintained an AI Contribution Log to document the use of AI-assisted development.
+2. Decision
 
-SLE-2: BFS vs DFS Profiling
+Use the same graph, starting node, and goal-node test cases when comparing BFS and DFS. Keep their implementations and profiling scripts separate so that each algorithm can be executed and evaluated independently.
 
-Worked with Breadth-First Search (BFS) and Depth-First Search (DFS) to understand their working and compare their performance using profiling scripts.
+3. Alternatives Considered
 
-The profiling setup uses starting node A and goal nodes B, I, and K. The scripts are designed to perform 10 timing runs and summarize the best, average, and worst execution times.
+Alternative 1: Use Different Graphs
 
-SLE-3: Architectural Design
+Use different graphs for BFS and DFS. This could make the comparison unfair because the input structure would differ.
 
-Created the C4 architecture model for the BFS vs DFS Graph Search System, including context, container, and component diagrams.
+Alternative 2: Test Only One Goal Node
 
-SLE-4: Architecture Decision Record
+Use only one goal node for the comparison. This would provide less information about how the algorithms behave for different search cases.
 
-This assignment documents the reasoning behind using consistent test conditions when comparing BFS and DFS.
+Alternative 3: Compare Only Theoretical Complexity
 
-Repository Contents
+Compare BFS and DFS using theoretical time and space complexity without executing profiling scripts. This would not provide measured execution times for the selected test cases.
 
-- "ADR-001-same-test-conditions.md" — Main architecture decision record.
-- "decision-context.md" — Background and technical context.
-- "validation-checklist.md" — Checklist for verifying the implementation and profiling.
-- "AI_Contribution_Log.md" — Documentation of AI assistance and personal verification.
-- "references.md" — Project references.
+4. Rationale
 
-Objective
+- Using the same graph keeps the input conditions consistent.
+- Using the same starting node makes the test setup easier to compare.
+- Testing goal nodes B, I, and K provides multiple search cases.
+- Separate implementations help identify which algorithm is being executed.
+- Repeated timing runs can reduce the influence of a single unusual measurement.
+- Best, average, and worst recorded times provide different views of the measured performance.
+- The decision connects the profiling activity in SLE-2 with the architecture diagrams in SLE-3.
+- Actual timing results must be collected from program execution before drawing conclusions about which algorithm performs better.
 
-The objective is to document a clear, justified, and verifiable design decision that connects the implementation and profiling from SLE-2 with the architecture designed in SLE-3.
+5. Consequences
+
+Positive Consequences
+
+- The comparison uses consistent test conditions.
+- Both algorithms can be profiled independently.
+- The experiment is easier to repeat and verify.
+- The decision and its reasoning are documented clearly.
+
+Trade-offs and Limitations
+
+- Profiling results can vary depending on the computer and runtime environment.
+- A small number of test cases may not represent every possible graph.
+- Measured execution time alone does not describe every aspect of algorithm performance.
+- Actual profiling outputs must be retained to support performance claims.
+
+6. Validation
+
+The decision can be validated by checking that:
+
+1. Both algorithms use the same graph.
+2. Both algorithms use starting node A.
+3. The test cases include goal nodes B, I, and K.
+4. The profiling scripts perform the intended timing runs.
+5. The best, average, and worst values are calculated from actual measurements.
+6. The implementation and architecture files are present in the repository.
+
+7. References
+
+See "references.md" for the related SLE-2 and SLE-3 project links.
