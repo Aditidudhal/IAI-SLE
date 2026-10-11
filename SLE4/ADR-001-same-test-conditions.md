@@ -45,5 +45,3 @@ Repository Contents
 Objective
 
 The objective is to document a clear, justified, and verifiable design decision that connects the implementation and profiling from SLE-2 with the architecture designed in SLE-3.
-
-Note: Actual profiling values should be taken from the executed scripts. No unverified timing measurements are included in this repository.
